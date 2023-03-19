@@ -1,4 +1,44 @@
 DAX stands for Data Analysis Expressions  
 It is basically a formulae language with functions  
+  
+In this project I got hands on over DAX queries by playing around with datasets in Power BI Desktop. 
+  
+First, I modelled the data by understanding the relationsips between tables "Orders", "Customers" and "Cookie Types"  
+  
+Power BI had already detected One-to-Many relation between Customer ID of "Customers" table and Customer ID of "Orders" table,which means one customer can place  
+many orders.  
 
-In this projet I got hands on over DAX queries by playing around a dataset in Power BI Desktop. 
+Then I manually drew a One-to-Many relation between Cookie Type of "Cookie Types" and Product of "Orders" table, which means one individual cookie type can be  
+in many product orders.  
+  
+Queries  
+Aggregator Function (by Column)   
+
+1. Total Number of Units Sold = SUM(Orders[Units Sold])
+   Change the data type of the new field "Total Number of Units Sold" to 0 decimal values as cookies can not be sold in the franctions.  
+  
+2. Count of Orders = COUNTROWS(Orders)  
+  
+3. Distinct Customers = DISTINCTCOUNT(Orders[Customer ID])    
+  
+4. Profit Margin % = [Total Profit] / SUM(Orders[Revenue])  
+
+Iterator Function (by Row)  
+
+1. Total Profit by Row = SUMX('Cookie Types', 'Cookie Types'[Units Sold] * 'Cookie Types'[Revenue Per Cookie] - 'Cookie Types'[Cost Per Cookie])  
+  
+Time and Date Functions  
+
+1. Day of Week = WEEKDAY(Orders[Date],1)  
+  
+Logical Functions  
+  
+1. Has Chocolate = FIND("Chocolate", Orders[Product],1,0)  
+  
+2. Chocolate In = IF(FIND("Chocolate",Orders[Product],1,0) >0 ,"Chocolate Inside" , "No Chocolate")  
+  
+Calculate Function  
+  
+1. Chocolate Chip sold over 500 Units = CALCULATE(COUNTROWS(Orders),Orders[Units Sold] > 500,Orders[Product] == "Chocolate Chip")  
+  
+  
