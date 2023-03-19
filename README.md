@@ -7,6 +7,4 @@ POWER-BI
      |    
      |______ About  
      |______ SuperStore.pbix (Power-BI file)  
-     |______ SuperStore DataSet.xlsx (Excel file)  
-|   
-|___        
+     |______ SuperStore DataSet.xlsx (Excel file)          
